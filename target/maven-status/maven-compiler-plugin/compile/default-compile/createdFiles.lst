@@ -1,0 +1,6 @@
+com\mindtree\BookStore\service\BookService.class
+com\mindtree\BookStore\repository\BookRepository.class
+com\mindtree\BookStore\ServletInitializer.class
+com\mindtree\BookStore\BookStoreApplication.class
+com\mindtree\BookStore\model\Book.class
+com\mindtree\BookStore\controller\BookController.class
