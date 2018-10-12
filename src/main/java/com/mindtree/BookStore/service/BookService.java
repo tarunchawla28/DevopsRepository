@@ -14,6 +14,7 @@ public class BookService {
 	
     public Book addBook(Book book) {
 		System.out.println("testing vi");
+                System.out.println("second time");
 		return bookRepository.save(book);
 	}
 public List showAll() {
