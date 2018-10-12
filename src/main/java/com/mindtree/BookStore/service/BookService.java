@@ -13,7 +13,7 @@ public class BookService {
 	private BookRepository bookRepository;
 	
     public Book addBook(Book book) {
-		
+		System.out.println("testing vi");
 		return bookRepository.save(book);
 	}
 public List showAll() {
