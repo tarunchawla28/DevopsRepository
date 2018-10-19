@@ -6,4 +6,7 @@ git 'https://github.com/AninditaMajumdar/DevopsRepository.git'
 stage ('mvn clean install command'){
 sh 'mvn clean install'
 }
+stage('Sonar Running'){
+  sh 'mvn sonar:sonar -Dsonar.host.url=http://my31407dns.eastus2.cloudapp.azure.com'
+}
 }
