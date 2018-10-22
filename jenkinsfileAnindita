@@ -41,7 +41,7 @@ def downloadSpec="""{
 server.download(downloadSpec)
 }
 stage('Sending into tomcat'){
-    sh ' sudo /var/lib/jenkins/workspace/DownloadingArtifact/*.war my2191dns.eastus2.cloudapp.azure.com:8080/'
+    sh ' sudo -S  /var/lib/jenkins/workspace/DownloadingArtifact/*.war my2191dns.eastus2.cloudapp.azure.com:8080/'
 }
 
 }
