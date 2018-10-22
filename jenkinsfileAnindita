@@ -37,11 +37,13 @@ def downloadSpec="""{
 {
 "pattern":"repo/*.war",
 "target":"/var/lib/jenkins/workspace/DownloadingArtifact/"
-
 }
 ]
 }"""
 server.download(downloadSpec)
+}
+stage('Sending into tomcat')
+    sh '/var/lib/jenkins/workspace/DownloadingArtifact/*.war my2191dns.eastus2.cloudapp.azure.com:8080/'
 }
 
 }
