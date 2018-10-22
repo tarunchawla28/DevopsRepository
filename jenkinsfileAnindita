@@ -7,11 +7,11 @@ git 'https://github.com/AninditaMajumdar/DevopsRepository.git'
 }
 
 stage ('mvn clean install command'){
-env.BN = VersionNumber([
-        versionNumberString :'${BUILD_MONTH}.${BUILDS_TODAY}.${BUILD_NUMBER}', 
-        projectStartDate : '2018-10-21', 
-        versionPrefix : 'v1.'
-    ])
+BUILD_VERSION_GENERATED = VersionNumber(
+        versionNumberString: '0.0.1.${BUILDS_ALL_TIME, X}',
+        projectStartDate:    '2018-10-21',
+        skipFailedBuilds:    true)
+currentBuild.displayName = BUILD_VERSION_GENERATED
 sh 'mvn clean install'
 }
 stage('Sonar Running'){
