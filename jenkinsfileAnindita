@@ -11,4 +11,16 @@ sh 'mvn clean install'
 stage('Sonar Running'){
   sh 'mvn sonar:sonar -Dsonar.host.url=http://my31407dns.eastus2.cloudapp.azure.com'
 }
+stage ('deploying artifact'){
+def server =Artifactory.server 'ArtifactoryID'
+def uploadSpec="""{
+"files":[
+{
+  "pattern":"target/*.war",
+  "target":"repo/"
+}
+]
+}"""
+server.upload(uploadSpec)
+}
 }
