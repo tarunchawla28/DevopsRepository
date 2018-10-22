@@ -5,12 +5,24 @@ stage('Preparation')
 {
 git 'https://github.com/AninditaMajumdar/DevopsRepository.git'
 }
-
+stage('Sonar Running'){
+  sh 'mvn sonar:sonar -Dsonar.host.url=http://my31407dns.eastus2.cloudapp.azure.com'
+}
 stage ('mvn clean install command'){
 sh 'mvn clean install -Dv=${BUILD_NUMBER}'
 }
-stage('Sonar Running'){
-  sh 'mvn sonar:sonar -Dsonar.host.url=http://my31407dns.eastus2.cloudapp.azure.com'
+stage('confirmation for build')
+{
+def Apply=false;
+try
+{
+input message:'Apply',ok:'Apply'
+Apply=true
+}
+catch(err){
+Apply=false
+currentBuild.result='success'
+}
 }
 stage ('deploying artifact'){
 def server =Artifactory.server 'ArtifactoryID'
@@ -32,6 +44,7 @@ def downloadSpec="""{
 {
 "pattern":"repo/*.war",
 "target":"/var/lib/jenkins/workspace/DownloadingArtifact/"
+
 }
 ]
 }"""
