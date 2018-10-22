@@ -37,4 +37,13 @@ def downloadSpec="""{
 server.download(downloadSpec)
 
 }
+stage('Running war file')
+{
+sh 'cd /var/lib/jenkins/workspace/DownloadingArtifact/'
+sh 'java -jar BookStore-0.0.1-SNAPSHOT.war --server.port=8083'
+}
+stage('Checking Status of Running war file')
+{
+sh 'lsof -i:8083'
+}
 }
