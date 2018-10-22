@@ -23,4 +23,15 @@ def uploadSpec="""{
 }"""
 server.upload(uploadSpec)
 }
+stage('downloading artifact')
+{
+def downloadSpec="""{
+"files":[
+{
+"pattern":"repo/*.war",
+"target":"/var/lib/jenkins/workspace/DownloadingArtifact/"
+}
+]
+}"""
+}
 }
