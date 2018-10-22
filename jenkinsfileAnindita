@@ -5,9 +5,7 @@ stage('Preparation')
 {
 git 'https://github.com/AninditaMajumdar/DevopsRepository.git'
 }
-stage('Sonar Running'){
-  sh 'mvn sonar:sonar -Dsonar.host.url=http://my31407dns.eastus2.cloudapp.azure.com'
-}
+
 stage ('mvn clean install command'){
 sh 'mvn clean install -Dv=${BUILD_NUMBER}'
 }
@@ -23,6 +21,9 @@ catch(err){
 Apply=false
 currentBuild.result='success'
 }
+}
+stage('Sonar Running'){
+  sh 'mvn sonar:sonar -Dsonar.host.url=http://my31407dns.eastus2.cloudapp.azure.com'
 }
 stage ('deploying artifact'){
 def server =Artifactory.server 'ArtifactoryID'
