@@ -5,7 +5,13 @@ stage('Preparation')
 {
 git 'https://github.com/AninditaMajumdar/DevopsRepository.git'
 }
+
 stage ('mvn clean install command'){
+env.BN = VersionNumber([
+        versionNumberString :'${BUILD_MONTH}.${BUILDS_TODAY}.${BUILD_NUMBER}', 
+        projectStartDate : '2018-10-21', 
+        versionPrefix : 'v1.'
+    ])
 sh 'mvn clean install'
 }
 stage('Sonar Running'){
