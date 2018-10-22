@@ -25,6 +25,7 @@ server.upload(uploadSpec)
 }
 stage('downloading artifact')
 {
+def server =Artifactory.server 'ArtifactoryID'
 def downloadSpec="""{
 "files":[
 {
@@ -33,5 +34,7 @@ def downloadSpec="""{
 }
 ]
 }"""
+server.download(downloadSpec)
+
 }
 }
