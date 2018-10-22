@@ -9,10 +9,7 @@ git 'https://github.com/AninditaMajumdar/DevopsRepository.git'
 stage ('mvn clean install command'){
 sh 'mvn clean install -Dv=${BUILD_NUMBER}'
 }
-stage('confirmation for build')
-{
-input message:'Do you want to deploy it to artifactory?',ok:'YES'
-}
+
 stage('Sonar Running'){
   sh 'mvn sonar:sonar -Dsonar.host.url=http://my31407dns.eastus2.cloudapp.azure.com'
 }
@@ -27,6 +24,10 @@ def uploadSpec="""{
 ]
 }"""
 server.upload(uploadSpec)
+}
+stage('confirmation for build')
+{
+input message:'Do you want to send it to production?',ok:'YES'
 }
 stage('downloading artifact')
 {
