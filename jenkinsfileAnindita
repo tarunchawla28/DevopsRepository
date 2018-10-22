@@ -7,12 +7,7 @@ git 'https://github.com/AninditaMajumdar/DevopsRepository.git'
 }
 
 stage ('mvn clean install command'){
-BUILD_VERSION_GENERATED = VersionNumber(
-        versionNumberString: '0.0.1.${BUILDS_ALL_TIME, X}',
-        projectStartDate:    '2018-10-21',
-        skipFailedBuilds:    true)
-currentBuild.displayName = BUILD_VERSION_GENERATED
-sh 'mvn clean install'
+sh 'mvn clean install -Dv=${BUILD_NUMBER}'
 }
 stage('Sonar Running'){
   sh 'mvn sonar:sonar -Dsonar.host.url=http://my31407dns.eastus2.cloudapp.azure.com'
