@@ -19,7 +19,6 @@ Apply=true
 }
 catch(err){
 Apply=false
-currentBuild.result='success'
 }
 }
 stage('Sonar Running'){
