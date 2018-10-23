@@ -40,10 +40,6 @@ def downloadSpec="""{
 }"""
 server.download(downloadSpec)
 }
-stage('Sending into tomcat'){
-  sshagent(['f8f7abeedca5b5d12ac4618cc00824aff4b9de0914686fb17bc32568edc7baaa']){
-    sh 'scp target/*.war my2191dns.eastus2.cloudapp.azure.com:8080/var/lib/docker/overlay2/f8f7abeedca5b5d12ac4618cc00824aff4b9de0914686fb17bc32568edc7baaa/merged/usr/local/tomcat/webapps/'
-    }
-}
+
 
 }
