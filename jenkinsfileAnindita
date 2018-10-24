@@ -9,7 +9,13 @@ git 'https://github.com/AninditaMajumdar/DevopsRepository.git'
 stage ('mvn clean install command'){
 sh 'mvn clean install -Dv=${BUILD_NUMBER}'
 }
-
+stage('SonarQube quality gate')
+{
+def qg=waitForQualityGate()
+if(qg.status!='OK'){
+error 'pipeline aborted due to quality gate failure : ${qg.status}' 
+}
+}
 
 stage ('deploying artifact'){
 def server =Artifactory.server 'ArtifactoryID'
