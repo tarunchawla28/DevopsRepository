@@ -16,7 +16,7 @@ def server =Artifactory.server 'ArtifactoryID'
 def uploadSpec="""{
 "files":[
 {
-  "pattern":"target/*.war",
+  "pattern":"target/BookStore-SNAPSHOT-0.0.${BUILD_NUMBER}.war",
   "target":"repo/"
 }
 ]
@@ -33,7 +33,7 @@ def server =Artifactory.server 'ArtifactoryID'
 def downloadSpec="""{
 "files":[
 {
-"pattern":"repo/*.war",
+"pattern":"repo/BookStore-SNAPSHOT-0.0.${BUILD_NUMBER}.war",
 "target":"/var/lib/jenkins/workspace/DownloadingArtifact/"
 }
 ]
@@ -41,7 +41,7 @@ def downloadSpec="""{
 server.download(downloadSpec)
 }
 stage ('Final deploy'){
-sh 'scp  /var/lib/jenkins/workspace/DownloadingArtifact/BookStore-SNAPSHOT-0.0.53.war vmadmin123@my2191dns.eastus2.cloudapp.azure.com:/home/vmadmin123/webapps'
+sh 'scp  /var/lib/jenkins/workspace/DownloadingArtifact/BookStore-SNAPSHOT-0.0.${BUILD_NUMBER}.war vmadmin123@my2191dns.eastus2.cloudapp.azure.com:/home/vmadmin123/webapps'
 }
 
 }
