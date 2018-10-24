@@ -41,7 +41,8 @@ def downloadSpec="""{
 server.download(downloadSpec)
 }
 stage ('Final deploy'){
-sh 'scp -i /home/vmadmin123/privateKey.pem /var/lib/jenkins/workspace/DownloadingArtifact/BookStore-SNAPSHOT-0.0.53.war my2191dns.eastus2.cloudapp.azure.com:/home/vmadmin123/webapps'
+sh 'ssh -o StrictHostKeyChecking=no vmadmin123@my2191dns.eastus2.cloudapp.azure.com'
+sh 'scp -i /home/vmadmin123/privateKey.pem/var/lib/jenkins/workspace/DownloadingArtifact/BookStore-SNAPSHOT-0.0.53.war my2191dns.eastus2.cloudapp.azure.com:/home/vmadmin123/webapps'
 }
 
 }
