@@ -6,8 +6,10 @@ stage('Preparation')
 git 'https://github.com/AninditaMajumdar/DevopsRepository.git'
 }
 stage('Sonar Running'){
+withSonarQubeEnv('sonarqube')
+{
   sh 'mvn sonar:sonar -Dsonar.host.url=http://my31407dns.eastus2.cloudapp.azure.com'
-  
+ } 
 }
 stage('SonarQube quality gate')
 {
