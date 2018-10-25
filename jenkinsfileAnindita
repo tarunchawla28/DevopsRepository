@@ -5,6 +5,9 @@ stage('Preparation')
 {
 git 'https://github.com/AninditaMajumdar/DevopsRepository.git'
 }
+stage ('mvn clean install command'){
+sh 'mvn clean install -Dv=${BUILD_NUMBER}'
+}
 stage('Sonar Running'){
 withSonarQubeEnv('sonarqube')
 {
